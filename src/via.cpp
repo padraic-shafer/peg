@@ -57,7 +57,7 @@ double ruben2005eqn9m(double energy, double kLineDensity, int mDiffractionOrder,
 
 	double mmWavelength = (eVnm_PRODUCT / energy) * mm_PER_nm;
 	double A0 = mDiffractionOrder * kLineDensity * mmWavelength;
-	double A2 = -0.5 * A0 * rbObjectDist * b2Focus;
+	double A2 = -0.5 * mDiffractionOrder * kLineDensity * rbObjectDist * b2Focus;
 	double rA2A0 = A2 / A0;
 	double r = rbObjectDist / raSourceDist;
 	double r1 = r + 1.0;
