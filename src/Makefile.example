@@ -6,26 +6,16 @@
 CC=mpic++
 CFLAGS=-c -g -Wall -fopenmp
 LDFLAGS=-fopenmp -lgsl -lgslcblas
-SOURCES=mainSerial.cpp mainMPI.cpp PEG.cpp PESolver.cpp PEMainSupport.cpp via.cpp
+SOURCES=mainSerial.cpp mainMPI.cpp PEG.cpp PESolver.cpp PEMainSupport.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 
 all: $(SOURCES) pegSerial pegMPI
 
-pegSerial: mainSerial.o PEMainSupport.o PEG.o PESolver.o via.o
-	$(CC) $(LDFLAGS) mainSerial.o PEMainSupport.o PEG.o PESolver.o via.o -o ../$@
+pegSerial: mainSerial.o PEMainSupport.o PEG.o PESolver.o
+	$(CC) $(LDFLAGS) mainSerial.o PEMainSupport.o PEG.o PESolver.o -o ../$@
 
-pegMPI: mainMPI.o PEMainSupport.o PEG.o PESolver.o via.o
-	$(CC) $(LDFLAGS) mainMPI.o PEMainSupport.o PEG.o PESolver.o via.o -o ../$@
+pegMPI: mainMPI.o PEMainSupport.o PEG.o PESolver.o
+	$(CC) $(LDFLAGS) mainMPI.o PEMainSupport.o PEG.o PESolver.o -o ../$@
 
 .cpp.o:
 	$(CC) $(CFLAGS) $< -o $@
-
-install: pegSerial pegMPI installDirs
-	cp ../pegSerial "${PREFIX}"/bin/pegSerial
-	cp ../pegMPI "${PREFIX}"/bin/pegMPI
-# 	cp -r ../materialDatabase "${PREFIX}"/bin/peg.d/materialDatabase
-	cp -r ../materialDatabase "${PREFIX}"/local/peg/materialDatabase
-
-installDirs:
-	mkdir -p "${PREFIX}"/bin
-	mkdir -p "${PREFIX}"/local/peg
