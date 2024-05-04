@@ -26,6 +26,7 @@ along with PEG.  If not, see <http://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <vector>
 #include <string.h>
+#include <cstdlib>
 
 // This packs the current result into a plain double \c array, for easy communication using standard MPI types.  The array must have pre-allocated room for 2N+1 + 4 elements.
 void PEResult::toDoubleArray(double* array) const {
@@ -65,7 +66,13 @@ gsl_complex PEGrating::refractiveIndex(double wl, const std::string& material) {
 //	return gsl_complex_rect(0.993, 0);
 
 	// Attempt to open the material database file.
-	std::string fileName = std::string(PEG_MATERIALS_DB_PATH) + std::string("/") + material + std::string(".idx");
+    std::string basePath = std::string("/");
+    char* pegDataPath = std::getenv("PEG_DATA_PATH");
+    if (pegDataPath != NULL) {
+        basePath = std::string(pegDataPath) + std::string("/");
+    }
+	std::string fileName = basePath + std::string(PEG_MATERIALS_DB_PATH) + std::string("/") + material + std::string(".idx");
+    // std::cout << "PEG expects materials database to be in path: " << fileName << std::endl;
 
 	std::ifstream matFile;
 	matFile.open(fileName.c_str());

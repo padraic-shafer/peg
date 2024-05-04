@@ -35,13 +35,14 @@ along with PEG.  If not, see <http://www.gnu.org/licenses/>.
 /// This structure specifies the operating input, and is able to parse it from command-line options \c argc, \c argv.
 class PECommandLineOptions {
 public:
-	enum Mode {InvalidMode, ConstantIncidence, ConstantIncludedAngle, ConstantWavelength};
+	enum Mode {InvalidMode, ConstantIncidence, ConstantIncludedAngle, ConstantWavelength, MinimalDefocus};
 	
 	// Input variables:
 	////////////////////////////////
 	Mode mode;
 
 	double min, max,increment,incidenceAngle,includedAngle,wavelength;
+	double sourceDistance, slitDistance, vlsFocusCoeff;
 	int toOrder;
 
 	int N;

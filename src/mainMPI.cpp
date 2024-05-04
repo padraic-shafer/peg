@@ -301,6 +301,16 @@ int main(int argc, char** argv) {
 			incidenceAngle = (asin(-io.toOrder*wavelength/2/io.period/cos(ciaRad/2)) + ciaRad/2) * 180 / M_PI;	// formula for constant included angle: satisfies alpha + beta = cia, and grating equation io.toOrder*wavelength/d = sin(beta) - sin(alpha).
 			break;
 			}
+		case PECommandLineOptions::MinimalDefocus: {
+			double energy = M_HC / wavelength;  // eV
+			double kLineDensity = 1.0 / io.gratingPeriod / 1000;  // Lines per mm
+			double cCosRatio = ruben2005eqn9m(energy, kLineDensity, io.toOrder, io.sourceDistance, io.slitDistance, io.vlsFocusCoeff);
+			incidenceAngle = ruben2005eqn8m(energy, cCosRatio, kLineDensity, io.toOrder);
+			if (io.printDebugOutput) {
+				std::cout << "Incidence angle is " << incidenceAngle << "degrees for energy " << energy << "eV" << std::endl;
+			}
+			break;
+			}
 		case PECommandLineOptions::ConstantWavelength:
 			incidenceAngle = currentValue;
 			break;

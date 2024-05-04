@@ -25,6 +25,7 @@ void PECommandLineOptions::init() {
 	mode = InvalidMode;
 
 	min = max = increment = incidenceAngle = includedAngle = wavelength = DBL_MAX;
+	sourceDistance = slitDistance = vlsFocusCoeff = DBL_MAX;
 
 	toOrder = N = INT_MAX;
 
@@ -75,6 +76,9 @@ bool PECommandLineOptions::parseFromCommandLine(int argc, char** argv) {
 				{"coatingThickness", required_argument, 0, 22},
 				{"showLegal", no_argument, 0, 23},
 				{"rmsRoughnessNm", required_argument, 0, 24},
+				{"sourceDistance", required_argument, 0, 25},
+				{"slitDistance", required_argument, 0, 26},
+				{"vlsFocusCoeff", required_argument, 0, 27},
 				{0, 0, 0, 0}
 			};
 				
@@ -91,7 +95,8 @@ bool PECommandLineOptions::parseFromCommandLine(int argc, char** argv) {
 				if(strcmp(optarg, "constantIncidence") == 0) mode = ConstantIncidence;
 				else if(strcmp(optarg, "constantIncludedAngle") == 0) mode = ConstantIncludedAngle;
 				else if(strcmp(optarg, "constantWavelength") == 0) mode = ConstantWavelength;
-				else throw "The argument to --mode must be one of: constantIncidence, constantIncludedAngle, or constantWavelength.";
+				else if(strcmp(optarg, "minimalDefocus") == 0) mode = MinimalDefocus;
+				else throw "The argument to --mode must be one of: constantIncidence, constantIncludedAngle, constantWavelength, or minimalDefocus.";
 				break;
 				
 			case 2: // min
@@ -200,6 +205,15 @@ bool PECommandLineOptions::parseFromCommandLine(int argc, char** argv) {
 			case 24: // rmsRoughnessNm
 				rmsRoughnessNm = atof(optarg);
 				break;
+			case 25: // sourceDistance
+				sourceDistance = atof(optarg);
+				break;
+			case 26: // slitDistance
+				slitDistance = atof(optarg);
+				break;
+			case 27: // vlsFocusCoeff
+				vlsFocusCoeff = atof(optarg);
+				break;
 			}
 		} // end of loop over input options.
 				
@@ -226,6 +240,10 @@ bool PECommandLineOptions::isValid() {
 		if(mode == ConstantIncludedAngle && includedAngle == DBL_MAX) throw "In constant included angle mode, the included angle --includedAngle must be provided.";
 		if(mode == ConstantIncludedAngle && toOrder == INT_MAX) throw "In constant included angle mode, the operating order --toOrder must be provided.";
 		if(mode == ConstantWavelength && wavelength == DBL_MAX) throw "In constant wavelength mode, the wavelength --wavelength must be provided.";
+		if(mode == MinimalDefocus && toOrder == INT_MAX) throw "In minimal defocus mode, the operating order --toOrder must be provided.";
+		if(mode == MinimalDefocus && sourceDistance == DBL_MAX) throw "In minimal defocus mode, the distance to source --sourceDistance must be provided.";
+		if(mode == MinimalDefocus && slitDistance == DBL_MAX) throw "In minimal defocus mode, the distance to exit slit --slitDistance must be provided.";
+		if(mode == MinimalDefocus && vlsFocusCoeff == DBL_MAX) throw "In minimal defocus mode, the VLS focusing coefficient --vlsFocusCoeff must be provided.";
 		
 		if(outputFile.empty()) throw "The output data file --outputFile must be provided.";
 		
@@ -278,6 +296,13 @@ void writeOutputFileHeader(std::ostream& of, const PECommandLineOptions& io) {
 		case PECommandLineOptions::ConstantWavelength:
 		of << "mode=constantWavelength" << std::endl;
 		of << "wavelength/eV=" << io.wavelength << std::endl;
+		break;
+		case PECommandLineOptions::MinimalDefocus:
+		of << "mode=minimalDefocus" << std::endl;
+		of << "toOrder=" << io.toOrder << std::endl;
+		of << "sourceDistance=" << io.sourceDistance << std::endl;
+		of << "slitDistance=" << io.slitDistance << std::endl;
+		of << "vlsFocusCoeff=" << io.vlsFocusCoeff << std::endl;
 		break;
 		default:
 		of << "mode=invalid" << std::endl;
