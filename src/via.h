@@ -8,6 +8,19 @@ by R. Reininger et al., NIM-A 538, 760-770 (2005).
 #ifndef VIA_H
 #define VIA_H
 
+
+/// Print verbose debug output from VIA-related functions
+#  ifndef VIA_DEBUG
+#    define VIA_DEBUG (0)
+#  else
+#    ifdef DEBUG
+#      define VIA_DEBUG (DEBUG)
+#    else
+#      define VIA_DEBUG (0)
+#    endif
+#  endif
+
+
 /// Photon energy-wavelength product, eV * nm
 #define eVnm_PRODUCT (1239.84197)
 
