@@ -1,5 +1,6 @@
 #include "PEG.h"
 #include "PEMainSupport.h"
+#include "via.h"
 
 #include <iostream>
 #include <fstream>
@@ -303,7 +304,7 @@ int main(int argc, char** argv) {
 			}
 		case PECommandLineOptions::MinimalDefocus: {
 			double energy = M_HC / wavelength;  // eV
-			double kLineDensity = 1.0 / io.gratingPeriod / 1000;  // Lines per mm
+			double kLineDensity = 1.0 / io.period / 1000;  // Lines per mm
 			double cCosRatio = ruben2005eqn9m(energy, kLineDensity, io.toOrder, io.sourceDistance, io.slitDistance, io.vlsFocusCoeff);
 			incidenceAngle = ruben2005eqn8m(energy, cCosRatio, kLineDensity, io.toOrder);
 			if (io.printDebugOutput) {
