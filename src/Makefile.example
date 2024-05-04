@@ -6,16 +6,16 @@
 CC=mpic++
 CFLAGS=-c -g -Wall -fopenmp
 LDFLAGS=-fopenmp -lgsl -lgslcblas
-SOURCES=mainSerial.cpp mainMPI.cpp PEG.cpp PESolver.cpp PEMainSupport.cpp
+SOURCES=mainSerial.cpp mainMPI.cpp PEG.cpp PESolver.cpp PEMainSupport.cpp via.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 
 all: $(SOURCES) pegSerial pegMPI
 
 pegSerial: mainSerial.o PEMainSupport.o PEG.o PESolver.o via.o
-	$(CC) $(LDFLAGS) mainSerial.o PEMainSupport.o PEG.o PESolver.o -o ../$@
+	$(CC) $(LDFLAGS) mainSerial.o PEMainSupport.o PEG.o PESolver.o via.o -o ../$@
 
 pegMPI: mainMPI.o PEMainSupport.o PEG.o PESolver.o via.o
-	$(CC) $(LDFLAGS) mainMPI.o PEMainSupport.o PEG.o PESolver.o -o ../$@
+	$(CC) $(LDFLAGS) mainMPI.o PEMainSupport.o PEG.o PESolver.o via.o -o ../$@
 
 .cpp.o:
 	$(CC) $(CFLAGS) $< -o $@
