@@ -307,7 +307,7 @@ int main(int argc, char** argv) {
 			double energy = M_HC / wavelength;  // eV
 			double kLineDensity = 1000.0 / io.period;  // Lines per mm
 			double cCosRatio = ruben2005eqn9m(energy, kLineDensity, io.toOrder, io.sourceDistance, io.slitDistance, io.vlsFocusCoeff);
-			double incidenceAngle = ruben2005eqn8m(energy, cCosRatio, kLineDensity, io.toOrder);
+			incidenceAngle = ruben2005eqn8m(energy, cCosRatio, kLineDensity, io.toOrder);
 			if (io.printDebugOutput) {
 				std::cout << "Incidence angle is " << incidenceAngle << " degrees for energy " << energy << " eV" << std::endl;
 			}
