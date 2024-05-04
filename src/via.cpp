@@ -7,6 +7,7 @@ by R. Reininger et al., NIM-A 538, 760-770 (2005).
 
 #include "via.h"
 #include <cmath>
+#include <iostream>
 
 
 double ruben2005eqn8m(double energy, double cCosRatio, double kLineDensity, int mDiffractionOrder) {
@@ -24,6 +25,18 @@ double ruben2005eqn8m(double energy, double cCosRatio, double kLineDensity, int 
 	double mmWavelength = (eVnm_PRODUCT / energy) * mm_PER_nm;
 	double incidenceAngleSin = (-mDiffractionOrder * kLineDensity * mmWavelength * scaleFactor) + sqrt(1.0 + std::pow(cCosRatio * mDiffractionOrder * kLineDensity * mmWavelength * scaleFactor, 2.0));
 	double incidenceAngleDeg = asin(incidenceAngleSin) * 180.0 / M_PI;
+
+	std::cout << "ruben2005eqn8m" << std::endl;
+	std::cout << "  energy" << std::endl;
+	std::cout << "  cCosRatio" << std::endl;
+	std::cout << "  kLineDensity" << std::endl;
+	std::cout << "  mDiffractionOrder" << std::endl;
+	std::cout << "  ---" << std::endl;
+	std::cout << "  scaleFactor" << std::endl;
+	std::cout << "  mmWavelength" << std::endl;
+	std::cout << "  incidenceAngleSin" << std::endl;
+	std::cout << "  incidenceAngleDeg" << std::endl;
+	std::cout << "-------------------" << std::endl;
 
 	return incidenceAngleDeg;
 }
@@ -53,6 +66,27 @@ double ruben2005eqn9m(double energy, double kLineDensity, int mDiffractionOrder,
 	double termB = -4*rA2A0 * sqrt(r1*r1 + 2*A2*r1 - A0*A0*r);
 	double termC = -4 + A0*A0 - 4*A2 + 4*rA2A0*rA2A0;
 	double cCosRatio = sqrt((termA + termB) / termC);
+
+	std::cout << "ruben2005eqn8m" << std::endl;
+	std::cout << "  energy" << std::endl;
+	std::cout << "  kLineDensity" << std::endl;
+	std::cout << "  mDiffractionOrder" << std::endl;
+	std::cout << "  raSourceDist" << std::endl;
+	std::cout << "  rbObjectDist" << std::endl;
+	std::cout << "  b2Focus" << std::endl;
+	std::cout << "  ---" << std::endl;
+	std::cout << "  mmWavelength" << std::endl;
+	std::cout << "  A0" << std::endl;
+	std::cout << "  A2" << std::endl;
+	std::cout << "  rA2A0" << std::endl;
+	std::cout << "  r" << std::endl;
+	std::cout << "  r1" << std::endl;
+	std::cout << "  ---" << std::endl;
+	std::cout << "  termA" << std::endl;
+	std::cout << "  termB" << std::endl;
+	std::cout << "  termC" << std::endl;
+	std::cout << "  cCosRatio" << std::endl;
+	std::cout << "-------------------" << std::endl;
 
 	return cCosRatio;
 }

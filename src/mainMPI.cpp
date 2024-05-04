@@ -306,10 +306,16 @@ int main(int argc, char** argv) {
 			double energy = M_HC / wavelength;  // eV
 			double kLineDensity = 1.0 / io.period / 1000;  // Lines per mm
 			double cCosRatio = ruben2005eqn9m(energy, kLineDensity, io.toOrder, io.sourceDistance, io.slitDistance, io.vlsFocusCoeff);
-			incidenceAngle = ruben2005eqn8m(energy, cCosRatio, kLineDensity, io.toOrder);
+			doubleincidenceAngle = ruben2005eqn8m(energy, cCosRatio, kLineDensity, io.toOrder);
 			if (io.printDebugOutput) {
-				std::cout << "Incidence angle is " << incidenceAngle << "degrees for energy " << energy << "eV" << std::endl;
+				std::cout << "Incidence angle is " << incidenceAngle << " degrees for energy " << energy << " eV" << std::endl;
 			}
+			std::cout << "MinimalDefocus" << std::endl;
+			std::cout << "  energy" << std::endl;
+			std::cout << "  kLineDensity" << std::endl;
+			std::cout << "  cCosRatio" << std::endl;
+			std::cout << "  incidenceAngle" << std::endl;
+			std::cout << "==============" << std::endl;
 			break;
 			}
 		case PECommandLineOptions::ConstantWavelength:
