@@ -11,11 +11,21 @@ OBJECTS=$(SOURCES:.cpp=.o)
 
 all: $(SOURCES) pegSerial pegMPI
 
-pegSerial: mainSerial.o PEMainSupport.o PEG.o PESolver.o
+pegSerial: mainSerial.o PEMainSupport.o PEG.o PESolver.o via.o
 	$(CC) $(LDFLAGS) mainSerial.o PEMainSupport.o PEG.o PESolver.o -o ../$@
 
-pegMPI: mainMPI.o PEMainSupport.o PEG.o PESolver.o
+pegMPI: mainMPI.o PEMainSupport.o PEG.o PESolver.o via.o
 	$(CC) $(LDFLAGS) mainMPI.o PEMainSupport.o PEG.o PESolver.o -o ../$@
 
 .cpp.o:
 	$(CC) $(CFLAGS) $< -o $@
+
+install: pegSerial pegMPI installDirs
+	cp ../pegSerial "${PREFIX}"/bin/pegSerial
+	cp ../pegMPI "${PREFIX}"/bin/pegMPI
+# 	cp -r ../materialDatabase "${PREFIX}"/bin/peg.d/materialDatabase
+	cp -r ../materialDatabase "${PREFIX}"/local/peg/materialDatabase
+
+installDirs:
+	mkdir -p "${PREFIX}"/bin
+	mkdir -p "${PREFIX}"/local/peg
