@@ -312,10 +312,10 @@ int main(int argc, char** argv) {
 				std::cout << "Incidence angle is " << incidenceAngle << " degrees for energy " << energy << " eV" << std::endl;
 			}
 			std::cout << "MinimalDefocus" << std::endl;
-			std::cout << "  energy" << energy << std::endl;
-			std::cout << "  kLineDensity" << kLineDensity << std::endl;
-			std::cout << "  cCosRatio" << cCosRatio << std::endl;
-			std::cout << "  incidenceAngle" << incidenceAngle << std::endl;
+			std::cout << "  energy: " << energy << std::endl;
+			std::cout << "  kLineDensity: " << kLineDensity << std::endl;
+			std::cout << "  cCosRatio: " << cCosRatio << std::endl;
+			std::cout << "  incidenceAngle: " << incidenceAngle << std::endl;
 			std::cout << "==============" << std::endl;
 			break;
 			}

@@ -27,15 +27,15 @@ double ruben2005eqn8m(double energy, double cCosRatio, double kLineDensity, int 
 	double incidenceAngleDeg = asin(incidenceAngleSin) * 180.0 / M_PI;
 
 	std::cout << "ruben2005eqn8m" << std::endl;
-	std::cout << "  energy" << energy << std::endl;
-	std::cout << "  cCosRatio" << cCosRatio << std::endl;
-	std::cout << "  kLineDensity" << kLineDensity << std::endl;
-	std::cout << "  mDiffractionOrder" << mDiffractionOrder << std::endl;
+	std::cout << "  energy: " << energy << std::endl;
+	std::cout << "  cCosRatio: " << cCosRatio << std::endl;
+	std::cout << "  kLineDensity: " << kLineDensity << std::endl;
+	std::cout << "  mDiffractionOrder: " << mDiffractionOrder << std::endl;
 	std::cout << "  ---" << std::endl;
-	std::cout << "  scaleFactor" << scaleFactor << std::endl;
-	std::cout << "  mmWavelength" << mmWavelength << std::endl;
-	std::cout << "  incidenceAngleSin" << incidenceAngleSin << std::endl;
-	std::cout << "  incidenceAngleDeg" << incidenceAngleDeg << std::endl;
+	std::cout << "  scaleFactor: " << scaleFactor << std::endl;
+	std::cout << "  mmWavelength: " << mmWavelength << std::endl;
+	std::cout << "  incidenceAngleSin: " << incidenceAngleSin << std::endl;
+	std::cout << "  incidenceAngleDeg: " << incidenceAngleDeg << std::endl;
 	std::cout << "-------------------" << std::endl;
 
 	return incidenceAngleDeg;
@@ -68,24 +68,24 @@ double ruben2005eqn9m(double energy, double kLineDensity, int mDiffractionOrder,
 	double cCosRatio = sqrt((termA + termB) / termC);
 
 	std::cout << "ruben2005eqn8m" << std::endl;
-	std::cout << "  energy" << energy << std::endl;
-	std::cout << "  kLineDensity" << kLineDensity << std::endl;
-	std::cout << "  mDiffractionOrder" << mDiffractionOrder << std::endl;
-	std::cout << "  raSourceDist" << raSourceDist << std::endl;
-	std::cout << "  rbObjectDist" << rbObjectDist << std::endl;
-	std::cout << "  b2Focus" << b2Focus << std::endl;
+	std::cout << "  energy: " << energy << std::endl;
+	std::cout << "  kLineDensity: " << kLineDensity << std::endl;
+	std::cout << "  mDiffractionOrder: " << mDiffractionOrder << std::endl;
+	std::cout << "  raSourceDist: " << raSourceDist << std::endl;
+	std::cout << "  rbObjectDist: " << rbObjectDist << std::endl;
+	std::cout << "  b2Focus: " << b2Focus << std::endl;
 	std::cout << "  ---" << std::endl;
-	std::cout << "  mmWavelength" << mmWavelength << std::endl;
-	std::cout << "  A0" << A0 << std::endl;
-	std::cout << "  A2" << A2 << std::endl;
-	std::cout << "  rA2A0" << rA2A0 << std::endl;
-	std::cout << "  r" << r << std::endl;
-	std::cout << "  r1" << r1 << std::endl;
+	std::cout << "  mmWavelength: " << mmWavelength << std::endl;
+	std::cout << "  A0: " << A0 << std::endl;
+	std::cout << "  A2: " << A2 << std::endl;
+	std::cout << "  rA2A0: " << rA2A0 << std::endl;
+	std::cout << "  r: " << r << std::endl;
+	std::cout << "  r1: " << r1 << std::endl;
 	std::cout << "  ---" << std::endl;
-	std::cout << "  termA" << termA << std::endl;
-	std::cout << "  termB" << termB << std::endl;
-	std::cout << "  termC" << termC << std::endl;
-	std::cout << "  cCosRatio" << cCosRatio << std::endl;
+	std::cout << "  termA: " << termA << std::endl;
+	std::cout << "  termB: " << termB << std::endl;
+	std::cout << "  termC: " << termC << std::endl;
+	std::cout << "  cCosRatio: " << cCosRatio << std::endl;
 	std::cout << "-------------------" << std::endl;
 
 	return cCosRatio;
