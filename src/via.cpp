@@ -67,7 +67,7 @@ double ruben2005eqn9m(double energy, double kLineDensity, int mDiffractionOrder,
 	double termC = -4 + A0*A0 - 4*A2 + 4*rA2A0*rA2A0;
 	double cCosRatio = sqrt((termA + termB) / termC);
 
-	std::cout << "ruben2005eqn8m" << std::endl;
+	std::cout << "ruben2005eqn9m" << std::endl;
 	std::cout << "  energy: " << energy << std::endl;
 	std::cout << "  kLineDensity: " << kLineDensity << std::endl;
 	std::cout << "  mDiffractionOrder: " << mDiffractionOrder << std::endl;
